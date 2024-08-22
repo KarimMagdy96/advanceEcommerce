@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.active {
+  font-weight: 500;
+}
+
+.row {
+  @apply flex flex-wrap py-8 px-4 items-center;
+}
