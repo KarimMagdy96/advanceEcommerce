@@ -13,7 +13,7 @@ const Navbar: FC<NavbarProps> = () => {
   };
   return (
     <nav
-      className={` bg-gray-100 lg:fixed static top-0 left-0 right-0 py-3  container mx-auto p-2 justify-between  flex flex-col lg:flex-row   items-center`}
+      className={` bg-gray-100 lg:fixed static z-10 top-0 left-0 right-0 py-3  container mx-auto p-2 justify-between  flex flex-col lg:flex-row   items-center`}
     >
       <div className="flex flex-col gap-5 items-center lg:flex-row  ">
         <img width={110} src={logo} alt="logo" />

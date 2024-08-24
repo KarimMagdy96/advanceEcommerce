@@ -1,10 +1,11 @@
-import { FC, useEffect, useState } from "react";
-
+import { FC } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { MoonLoader } from "react-spinners";
+import useRequist from "../../Hooks/useRequist";
 
 interface RecentProductsProps {}
-
 interface productInterface {
   brand: any;
   id: number;
@@ -24,27 +25,21 @@ interface productInterface {
   ratingsQuantity: number;
   ratingsAverage: string;
 }
-const RecentProducts: FC<RecentProductsProps> = () => {
-  const [products, setproducts] = useState<productInterface[] | []>([]);
-  function getRecentProducts() {
-    axios
-      .get("https://ecommerce.routemisr.com/api/v1/products")
-      .then((response) => {
-        setproducts(response.data.data);
 
-        console.log(products);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+const RecentProducts: FC<RecentProductsProps> = () => {
+  let { data, isError, error, isLoading, isFetching } = useRequist();
+
+  if (isLoading) {
+    return (
+      <div className=" w-full h-screen flex justify-center items-center ">
+        <MoonLoader className=" text-9xl" />
+      </div>
+    );
   }
-  useEffect(() => {
-    getRecentProducts();
-  }, []);
   return (
     <>
       <div className="row">
-        {products.map((item) => {
+        {data?.map((item: any) => {
           return (
             <div key={item.id} className="w-full md:w-1/3 lg:w-1/5 px-4">
               <div className="product py-4 relative overflow-hidden group  hover:drop-shadow-lg">

@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from "react";
-
+import React from "react";
+import Slider from "react-slick";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
@@ -41,15 +42,27 @@ const ProductDetails: FC<ProductDetailsProps> = () => {
     getRelatedProduct(category);
   }, [id]);
 
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <>
       <div className="row">
         <div className="w-1/4">
-          <img
-            className=" w-full"
-            src={productDetails?.imageCover}
-            alt={productDetails?.title}
-          />
+          <Slider {...settings}>
+            {productDetails?.images?.map((img: any) => (
+              <img
+                key={img}
+                className=" w-full"
+                src={img}
+                alt={productDetails?.title}
+              />
+            ))}
+          </Slider>
         </div>
         <div className="w-3/4 px-14  ">
           <div className=" text-lg  text-gray-950">{productDetails?.title}</div>

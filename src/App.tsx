@@ -14,7 +14,10 @@ import UserContextProvider from "./Context/UserContext";
 import ProtectedRouts from "./components/ProtectedRouts/ProtectedRouts";
 import Layout from "./components/Layout/Layout";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
+let queryClient = new QueryClient();
 let router = createBrowserRouter([
   {
     path: "/",
@@ -85,9 +88,12 @@ let router = createBrowserRouter([
 function App() {
   return (
     <>
-      <UserContextProvider>
-        <RouterProvider router={router}></RouterProvider>;
-      </UserContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <UserContextProvider>
+          <RouterProvider router={router}></RouterProvider>;
+          <ReactQueryDevtools />
+        </UserContextProvider>
+      </QueryClientProvider>
     </>
   );
 }
