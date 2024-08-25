@@ -16,6 +16,7 @@ import Layout from "./components/Layout/Layout";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { CartContextProvider } from "./Context/CartContext";
 
 let queryClient = new QueryClient();
 let router = createBrowserRouter([
@@ -90,8 +91,10 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <UserContextProvider>
-          <RouterProvider router={router}></RouterProvider>;
-          <ReactQueryDevtools />
+          <CartContextProvider>
+            <RouterProvider router={router}></RouterProvider>;
+            <ReactQueryDevtools />
+          </CartContextProvider>
         </UserContextProvider>
       </QueryClientProvider>
     </>
