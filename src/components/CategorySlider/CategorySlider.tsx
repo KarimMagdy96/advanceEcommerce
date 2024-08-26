@@ -11,9 +11,37 @@ const CategorySlider: FC<CategorySliderProps> = () => {
     dots: true,
     infinite: true,
     speed: 1500,
-    slidesToShow: 8,
+    arrows: false,
+    slidesToShow: 6,
     slidesToScroll: 3,
+    initialSlide: 0,
     autoplay: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
   function getCategores() {
     axios
@@ -30,7 +58,7 @@ const CategorySlider: FC<CategorySliderProps> = () => {
   }, []);
   return (
     <div className=" py-5">
-      <h2 className=" py-4 text-slate-800 text-lg font-semibold">
+      <h2 className=" py-4 text-slate-800 text-xl uppercase font-bold  pb-5 text-center ">
         Shop popular categories
       </h2>
       <Slider {...settings}>

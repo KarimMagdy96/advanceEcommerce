@@ -5,15 +5,17 @@ import { cartContext } from "../../Context/CartContext";
 interface CartProps {}
 
 const Cart: FC<CartProps> = () => {
-  let { getLoggedUserCart } = useContext(cartContext);
+  let { getLoggedUserCart, updateCartItem, addProductsToCart, removeCartItem } =
+    useContext(cartContext);
   let [cartDetails, setCartDetails] = useState<any>();
+
   async function getCartItems() {
     let response = await getLoggedUserCart();
-    setCartDetails(response?.data.data);
+    setCartDetails(response?.data?.data);
   }
   useEffect(() => {
     getCartItems();
-  }, []);
+  }, [cartDetails]);
   return (
     <>
       <div className="relative overflow-x-auto sm:rounded-lg mt-10">
@@ -44,17 +46,17 @@ const Cart: FC<CartProps> = () => {
             </tr>
           </thead>
           <tbody>
-            {cartDetails?.products.map((product: any) => {
+            {cartDetails?.products?.map((product: any) => {
               return (
                 <tr
-                  key={product?.product.id}
+                  key={product?.product?.id}
                   className="bg-white border-b  hover:bg-gray-50 "
                 >
                   <td className="p-4">
                     <img
                       src={product?.product.imageCover}
                       className="w-16 md:w-32 max-w-full max-h-full"
-                      alt={product?.product.title}
+                      alt={product?.product?.title}
                     />
                   </td>
                   <td className="px-6 py-4 font-semibold text-gray-900  ">
@@ -63,6 +65,14 @@ const Cart: FC<CartProps> = () => {
                   <td className="px-6 py-4">
                     <div className="flex items-center">
                       <button
+                        onClick={() =>
+                          product.count > 1
+                            ? updateCartItem(
+                                product?.product?.id,
+                                product?.count - 1
+                              )
+                            : removeCartItem(product?.product?.id)
+                        }
                         className="inline-flex items-center justify-center p-1 me-3 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200  "
                         type="button"
                       >
@@ -84,10 +94,16 @@ const Cart: FC<CartProps> = () => {
                         </svg>
                       </button>
                       <div>
-                        <span>{product.count}</span>
+                        <span>{product?.count}</span>
                       </div>
                       <button
-                        className="inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 "
+                        onClick={() =>
+                          updateCartItem(
+                            product?.product?.id,
+                            product?.count + 1
+                          )
+                        }
+                        className=" inline-flex items-center justify-center h-6 w-6 p-1 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 "
                         type="button"
                       >
                         <span className="sr-only">Quantity button</span>
@@ -113,9 +129,12 @@ const Cart: FC<CartProps> = () => {
                     {product?.price} EGP
                   </td>
                   <td className="px-6 py-4">
-                    <a href="#" className="font-medium text-red-600 ">
+                    <button
+                      onClick={() => removeCartItem(product?.product?.id)}
+                      className="font-medium text-red-600 "
+                    >
                       Remove
-                    </a>
+                    </button>
                   </td>
                 </tr>
               );

@@ -1,33 +1,14 @@
-import { FC } from "react";
-import axios from "axios";
+import { FC, useContext } from "react";
 import { Link } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
 import { MoonLoader } from "react-spinners";
 import useRequist from "../../Hooks/useRequist";
+import { cartContext } from "../../Context/CartContext";
 
 interface RecentProductsProps {}
-interface productInterface {
-  brand: any;
-  id: number;
-  title: string;
-  imageCover: string;
-  images: any;
-  price: number;
-  quantity: number;
-  description: string;
-  category: any;
-  subCategory: string;
-  slug: string;
-  sold: number;
-  subcategory: any;
-  updatedAt: string;
-  createdAt: string;
-  ratingsQuantity: number;
-  ratingsAverage: string;
-}
 
 const RecentProducts: FC<RecentProductsProps> = () => {
-  let { data, isError, error, isLoading, isFetching } = useRequist();
+  let { data, isLoading } = useRequist();
+  let { addProductsToCart } = useContext(cartContext);
 
   if (isLoading) {
     return (
@@ -63,7 +44,10 @@ const RecentProducts: FC<RecentProductsProps> = () => {
                     </div>
                   </div>
                 </Link>
-                <button className="group-hover:right-3  bg-yellow-500 px-5 py-4  absolute top-10 right-[-150px] transition-all duration-300">
+                <button
+                  onClick={() => addProductsToCart(item?.id)}
+                  className="group-hover:right-3  bg-yellow-500 px-5 py-4  absolute top-10 right-[-150px] transition-all duration-300"
+                >
                   <i className=" fas fa-shopping-cart text-slate-700"></i>
                 </button>
               </div>
