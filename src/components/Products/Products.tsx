@@ -2,6 +2,7 @@ import { FC, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useRequist from "../../Hooks/useRequist";
 import { cartContext } from "../../Context/CartContext";
+import toast from "react-hot-toast";
 
 interface ProductsProps {}
 
@@ -43,23 +44,33 @@ const Products: FC<ProductsProps> = () => {
     }
   };
   let handelfiltersearch = (search: any) => {
-    console.log(filtersearch);
+    setFilterProduct(data);
+    if (search == "") {
+      setFilterProduct(data);
+    }
+
     let filter = data.filter((item: any) => {
       return item.title.toLowerCase().includes(search.toLowerCase());
     });
     console.log(filter);
-    setFilterProduct(filter);
+    if (filter.length == 0) {
+      setFilterProduct(data);
+      toast.error("No result found");
+    } else {
+      setFilterProduct(filter);
+    }
   };
+
   useEffect(() => {
     setFilterProduct(data);
   }, [data]);
 
   return (
-    <div className="flex px-5  justify-between relative">
+    <div className="flex px-5 min-h-[120vh]  justify-between relative">
       <div
         className={`w-11/12 lg:w-2/5 xl:1/4    absolute lg:static ${
           filterOpen ? "left-0" : "-left-full"
-        }  bg-slate-50  z-10
+        }  bg-white  z-10
         } h-full pe-8  pt-5 p-4`}
       >
         <div className="flex justify-end">
