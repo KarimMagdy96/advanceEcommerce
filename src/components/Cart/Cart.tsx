@@ -29,14 +29,14 @@ const Cart: FC<CartProps> = () => {
   }
   return (
     <>
-      <div className="relative overflow-x-auto sm:rounded-lg mt-10">
+      <div className="relative overflow-x-auto sm:rounded-lg mt-10 p-0 md:p-2 ">
         <div className="  text-center text-3xl text-slate-800 font-bold ">
           Shopping cart
         </div>
         <h3 className="my-4 text-center font-semibold text-lg text-gray-600 ">
           TOTAL PRICE : {cartDetails?.totalCartPrice} EGP
         </h3>
-        <table className="w-3/4 mx-auto my-6 text-sm text-left rtl:text-right text-gray-500">
+        <table className="w-full mx-auto my-6 text-sm text-left rtl:text-right text-gray-500">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
             <tr>
               <th scope="col" className="px-16 py-3">
@@ -46,13 +46,7 @@ const Cart: FC<CartProps> = () => {
                 Product
               </th>
               <th scope="col" className="px-6 py-3">
-                Qty
-              </th>
-              <th scope="col" className="px-6 py-3">
                 Price
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Action
               </th>
             </tr>
           </thead>
@@ -63,18 +57,18 @@ const Cart: FC<CartProps> = () => {
                   key={product?.product?.id}
                   className="bg-white border-b  hover:bg-gray-50 "
                 >
-                  <td className="p-4">
+                  <td className="p-2">
                     <img
                       src={product?.product.imageCover}
                       className="w-16 md:w-32 max-w-full max-h-full"
                       alt={product?.product?.title}
                     />
                   </td>
-                  <td className="px-6 py-4 font-semibold text-gray-900  ">
-                    {product?.product.title}
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center">
+                  <td className="px-2 py-4 font-semibold text-gray-900  ">
+                    <div className="  line-clamp-2 ">
+                      {product?.product.title}
+                    </div>
+                    <div className="flex items-center   py-4">
                       <button
                         onClick={() =>
                           product.count > 1
@@ -135,17 +129,17 @@ const Cart: FC<CartProps> = () => {
                         </svg>
                       </button>
                     </div>
-                  </td>
-                  <td className="px-6 py-4 font-semibold text-gray-900 ">
-                    {product?.price} EGP
-                  </td>
-                  <td className="px-6 py-4">
+
                     <button
                       onClick={() => removeCartItem(product?.product?.id)}
                       className="font-medium text-red-600 "
                     >
                       Remove
                     </button>
+                  </td>
+
+                  <td className=" text-center font-semibold text-gray-900 ">
+                    {product?.price} EGP
                   </td>
                 </tr>
               );
