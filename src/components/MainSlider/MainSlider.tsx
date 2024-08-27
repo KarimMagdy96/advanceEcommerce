@@ -1,9 +1,6 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import Slider from "react-slick";
-
 import slider1 from "../../assets/img/slider-1.webp";
-import slider2 from "../../assets/img/slider-2.webp";
-import slider3 from "../../assets/img/slider-3.webp";
 import slider4 from "../../assets/img/slider-4.webp";
 interface MainSliderProps {}
 

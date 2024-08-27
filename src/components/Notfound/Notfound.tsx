@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import styles from "./Notfound.module.css";
+import { FC } from "react";
+
 import { Link } from "react-router-dom";
 
 interface NotfoundProps {}
