@@ -57,9 +57,9 @@ const Products: FC<ProductsProps> = () => {
   return (
     <div className="flex px-5  justify-between relative">
       <div
-        className={`w-11/12 lg:w-2/5 xl:1/4 bg-white   absolute lg:static ${
+        className={`w-11/12 lg:w-2/5 xl:1/4    absolute lg:static ${
           filterOpen ? "left-0" : "-left-full"
-        }  bg-white  z-10
+        }  bg-slate-50  z-10
         } h-full pe-8  pt-5 p-4`}
       >
         <div className="flex justify-end">
