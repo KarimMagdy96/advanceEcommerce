@@ -29,7 +29,7 @@ const Cart: FC<CartProps> = () => {
   }
   return (
     <>
-      <div className="relative overflow-x-auto sm:rounded-lg mt-10 p-0 md:p-2 ">
+      <div className="relative overflow-x-auto sm:rounded-lg mt-10 px-3 md:p-10 ">
         <div className="  text-center text-3xl text-slate-800 font-bold ">
           Shopping cart
         </div>
