@@ -34,7 +34,7 @@ const MainSlider: FC<MainSliderProps> = () => {
                 </strong>
               </h1>
 
-              <p className="mt-4 text-lg sm:text-xl/relaxed">
+              <p className="mt-4 text-base sm:text-xl/relaxed">
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                 Nesciunt illo tenetur fuga ducimus numquam ea!
               </p>
