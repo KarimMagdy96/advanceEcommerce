@@ -27,6 +27,19 @@ const Cart: FC<CartProps> = () => {
       </div>
     );
   }
+
+  if (cartDetails?.products.length == 0) {
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+        <div className="flex flex-col items-center">
+          <i className="text-5xl text-slate-700 fa-solid fa-cart-shopping"></i>
+          <p className="text-center text-gray-600 uppercase pt-4">
+            no items in your Cart...
+          </p>
+        </div>
+      </div>
+    );
+  }
   return (
     <>
       <div className="relative overflow-x-auto sm:rounded-lg mt-10 px-3 md:p-10 ">
