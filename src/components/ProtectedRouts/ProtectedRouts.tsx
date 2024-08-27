@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import styles from "./ProtectedRouts.module.css";
+
 import { Navigate } from "react-router-dom";
 
 interface ProtectedRoutsProps {

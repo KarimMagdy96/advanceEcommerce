@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useMemo, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useRequist from "../../Hooks/useRequist";
 import { cartContext } from "../../Context/CartContext";
