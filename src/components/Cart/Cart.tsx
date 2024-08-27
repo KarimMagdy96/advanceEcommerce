@@ -5,7 +5,7 @@ import { cartContext } from "../../Context/CartContext";
 interface CartProps {}
 
 const Cart: FC<CartProps> = () => {
-  let { getLoggedUserCart, updateCartItem, addProductsToCart, removeCartItem } =
+  let { getLoggedUserCart, updateCartItem, removeCartItem } =
     useContext(cartContext);
   let [cartDetails, setCartDetails] = useState<any>();
 

@@ -93,7 +93,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <UserContextProvider>
           <CartContextProvider>
-            <RouterProvider router={router}></RouterProvider>;
+            <RouterProvider router={router}></RouterProvider>
             <ReactQueryDevtools />
             <Toaster />
           </CartContextProvider>

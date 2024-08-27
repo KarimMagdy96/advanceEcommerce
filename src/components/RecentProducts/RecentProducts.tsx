@@ -1,22 +1,14 @@
 import { FC, useContext } from "react";
 import { Link } from "react-router-dom";
-import { MoonLoader } from "react-spinners";
 import useRequist from "../../Hooks/useRequist";
 import { cartContext } from "../../Context/CartContext";
 
 interface RecentProductsProps {}
 
 const RecentProducts: FC<RecentProductsProps> = () => {
-  let { data, isLoading } = useRequist();
+  let { data } = useRequist();
   let { addProductsToCart } = useContext(cartContext);
 
-  if (isLoading) {
-    return (
-      <div className=" w-full h-screen flex justify-center items-center ">
-        <MoonLoader className=" text-9xl" />
-      </div>
-    );
-  }
   return (
     <>
       <div className="row">
@@ -26,22 +18,37 @@ const RecentProducts: FC<RecentProductsProps> = () => {
               <div className="product py-4 relative overflow-hidden group  hover:drop-shadow-lg">
                 <Link to={`/Productdetails/${item.id}/ ${item.category.name}`}>
                   <img
-                    className=" w-full"
+                    className=" w-full rounded  border-2  object-cover"
                     src={item.imageCover}
                     alt={item.title}
                   />
                   <div className=" font-light text-sm text-gray-400">
                     {item.category.name}
                   </div>
-                  <h3 className=" line-clamp-2 font-semibold mb-3  ">
+                  <h3 className=" line-clamp-1 font-semibold mb-3  ">
                     {item.title}
                   </h3>
-                  <div className=" flex justify-between mb-3 items-center">
-                    <div className="price">{item.price} EGP</div>
+                  <div className=" ">
                     <div className="rate">
-                      {item.ratingsAverage}
-                      <i className=" fas fa-star mx-1 text-yellow-500"></i>
+                      {[...Array(Math.floor(item.ratingsAverage)).keys()].map(
+                        (item: any) => {
+                          return (
+                            <i
+                              key={item}
+                              className=" fas fa-star mx-1 text-yellow-500"
+                            ></i>
+                          );
+                        }
+                      )}
+                      {Number(item.ratingsAverage) % 1 ? (
+                        <i className="fa-solid fa-star-half text-yellow-500"></i>
+                      ) : (
+                        ""
+                      )}
+                      {item.ratingsAverage} /
+                      <span className=" text-gray-500">5</span>
                     </div>
+                    <div className="price my-2 font-bold">{item.price} EGP</div>
                   </div>
                 </Link>
                 <button

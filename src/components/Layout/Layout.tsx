@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import styles from "./Layout.module.css";
+import { FC } from "react";
+
 import Navbar from "./../Navbar/Navbar";
 import Footer from "./../Footer/Footer";
 import { Outlet } from "react-router-dom";

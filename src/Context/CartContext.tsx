@@ -1,10 +1,12 @@
 import axios from "axios";
-import { createContext, useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 export const cartContext = createContext<any>([]);
 
 export function CartContextProvider({ children }: any) {
+  let [CartItemsCount, setCartItemsCount] = useState<any>();
+
   async function getLoggedUserCart() {
     try {
       let response = await axios.get(
@@ -13,7 +15,7 @@ export function CartContextProvider({ children }: any) {
           headers: { token: localStorage.getItem("userToken") },
         }
       );
-
+      setCartItemsCount(response.data.numOfCartItems);
       return response;
     } catch (error) {
       console.log(error);
@@ -35,6 +37,7 @@ export function CartContextProvider({ children }: any) {
         )
         .then(() => {
           toast.success("Product added to cart");
+          getLoggedUserCart();
         });
       return response;
     } catch (error) {
@@ -85,6 +88,7 @@ export function CartContextProvider({ children }: any) {
         addProductsToCart,
         updateCartItem,
         removeCartItem,
+        CartItemsCount,
       }}
     >
       {children}

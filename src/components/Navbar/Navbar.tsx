@@ -3,15 +3,18 @@ import { FC, useContext, useState } from "react";
 import logo from "../../assets/img/logoipsum-321.svg";
 import { Link, NavLink } from "react-router-dom";
 import { userContext } from "../../Context/UserContext";
+import { cartContext } from "../../Context/CartContext";
 interface NavbarProps {}
 
 const Navbar: FC<NavbarProps> = () => {
   let { userLogin, setuserLogin } = useContext(userContext);
+  let { CartItemsCount } = useContext(cartContext);
   let [isOpen, setIsOpen] = useState(false);
   let handelLogout = () => {
     localStorage.removeItem("userToken");
     setuserLogin("");
   };
+
   return (
     <>
       <nav className="bg-white  fixed w-full  z-20 top-0 start-0 border-b border-gray-200 ">
@@ -39,13 +42,22 @@ const Navbar: FC<NavbarProps> = () => {
                 </NavLink>
               </div>
             ) : (
-              <NavLink
-                onClick={handelLogout}
-                to={"/Login"}
-                className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 text-center "
-              >
-                Logout
-              </NavLink>
+              <div className="flex items-center space-x-3 rtl:space-x-reverse">
+                <NavLink
+                  to={"/cart"}
+                  className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 flex justify-center gap-1 items-center focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 text-center "
+                >
+                  <i className="fa-solid fa-cart-shopping"></i>
+                  <span>{CartItemsCount}</span>
+                </NavLink>
+                <NavLink
+                  onClick={handelLogout}
+                  to={"/Login"}
+                  className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 text-center "
+                >
+                  Logout
+                </NavLink>
+              </div>
             )}
 
             {userLogin.length > 0 && (
@@ -89,31 +101,14 @@ const Navbar: FC<NavbarProps> = () => {
                     Home
                   </NavLink>
                 </li>
+
                 <li>
                   <NavLink
                     onClick={() => setIsOpen(false)}
                     className={`mx-2 inline-block py-2 text-lg text-slate-900 font-light`}
-                    to={"/cart"}
+                    to={"/products"}
                   >
-                    Cart
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    onClick={() => setIsOpen(false)}
-                    className={`mx-2 inline-block py-2 text-lg text-slate-900 font-light`}
-                    to={"/brands"}
-                  >
-                    Brands
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    onClick={() => setIsOpen(false)}
-                    className={`mx-2 inline-block py-2 text-lg text-slate-900 font-light`}
-                    to={"/categories"}
-                  >
-                    Categories
+                    Products
                   </NavLink>
                 </li>
               </ul>

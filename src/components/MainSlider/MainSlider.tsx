@@ -19,16 +19,46 @@ const MainSlider: FC<MainSliderProps> = () => {
   };
 
   return (
-    <div className="row">
-      <div className="w-3/4">
+    <div className=" ">
+      <div className="w-full relative ">
         <Slider {...settings}>
-          <img className="w-full h-[500px]" src={slider1} alt="slider" />
-          <img className="w-full h-[500px]" src={slider4} alt="slider" />
+          <img className="w-full h-[100vh]" src={slider1} alt="slider" />
+          <img className="w-full h-[100vh]" src={slider4} alt="slider" />
         </Slider>
-      </div>
-      <div className="w-1/4">
-        <img className="w-full h-[250px]" src={slider2} alt="slider" />
-        <img className="w-full h-[250px]" src={slider3} alt="slider" />
+        <div className=" absolute text-4xl font-bold text-center text-white  w-full  bg-tra  top-0 left-0 right-0 bottom-0">
+          <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center ">
+            <div className="mx-auto max-w-xl text-center">
+              <h1 className="text-3xl font-extrabold sm:text-5xl">
+                Understand User Flow.
+                <strong className="font-extrabold  sm:block text-yellow-500">
+                  {" "}
+                  Increase Conversion.{" "}
+                </strong>
+              </h1>
+
+              <p className="mt-4 sm:text-xl/relaxed">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                Nesciunt illo tenetur fuga ducimus numquam ea!
+              </p>
+
+              <div className="mt-8 flex flex-wrap justify-center gap-4">
+                <a
+                  className="block w-full rounded bg-gray-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-gray-700 focus:outline-none focus:ring active:bg-gray-500 sm:w-auto"
+                  href="#"
+                >
+                  Get Started
+                </a>
+
+                <a
+                  className="block w-full rounded px-12 py-3 text-sm font-medium text-gray-600 border shadow hover:text-gray-700 focus:outline-none focus:ring active:text-gray-500 sm:w-auto"
+                  href="#"
+                >
+                  Learn More
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

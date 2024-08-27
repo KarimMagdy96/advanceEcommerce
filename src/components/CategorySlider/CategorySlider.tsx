@@ -1,6 +1,4 @@
 import { FC, useEffect, useState } from "react";
-import styles from "./CategorySlider.module.css";
-import React from "react";
 import Slider from "react-slick";
 import axios from "axios";
 interface CategorySliderProps {}

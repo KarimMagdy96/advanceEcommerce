@@ -10,3 +10,11 @@
 .row {
   @apply flex flex-wrap py-8 px-4 items-center;
 }
+.bg-tra {
+  background: rgb(35, 35, 35);
+  background: linear-gradient(
+    180deg,
+    rgba(35, 35, 35, 0.5747549019607843) 23%,
+    rgba(0, 0, 0, 0.7288165266106443) 100%
+  );
+}
