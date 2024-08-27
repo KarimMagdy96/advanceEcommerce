@@ -25,18 +25,13 @@ const MainSlider: FC<MainSliderProps> = () => {
         <div className=" absolute text-4xl font-bold text-center text-white  w-full  bg-tra  top-0 left-0 right-0 bottom-0">
           <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center ">
             <div className="mx-auto max-w-xl text-center">
-              <h1 className="text-3xl font-extrabold sm:text-5xl">
+              <h1 className="text-2xl font-extrabold sm:text-5xl">
                 Understand User Flow.
                 <strong className="font-extrabold  sm:block text-yellow-500">
                   {" "}
                   Increase Conversion.{" "}
                 </strong>
               </h1>
-
-              <p className="mt-4 sm:text-xl/relaxed">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Nesciunt illo tenetur fuga ducimus numquam ea!
-              </p>
 
               <div className="mt-8 flex flex-wrap justify-center gap-4">
                 <a
