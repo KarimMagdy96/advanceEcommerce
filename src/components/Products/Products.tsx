@@ -59,6 +59,7 @@ const Products: FC<ProductsProps> = () => {
     } else {
       setFilterProduct(filter);
     }
+    setfilterOpen(false);
   };
 
   useEffect(() => {
