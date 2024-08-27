@@ -9,7 +9,7 @@ const MainSlider: FC<MainSliderProps> = () => {
   var settings = {
     dots: true,
     infinite: true,
-    speed: 1500,
+    speed: 1600,
     arrows: false,
     slidesToShow: 1,
     slidesToScroll: 1,
