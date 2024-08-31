@@ -17,6 +17,7 @@ import ProductDetails from "./components/ProductDetails/ProductDetails";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { CartContextProvider } from "./Context/CartContext";
 import { Toaster } from "react-hot-toast";
+import Orders from "./components/Orders/Orders";
 
 let queryClient = new QueryClient();
 let router = createBrowserRouter([
@@ -37,6 +38,14 @@ let router = createBrowserRouter([
         element: (
           <ProtectedRouts>
             <About />
+          </ProtectedRouts>
+        ),
+      },
+      {
+        path: "/allorders",
+        element: (
+          <ProtectedRouts>
+            <Orders />
           </ProtectedRouts>
         ),
       },

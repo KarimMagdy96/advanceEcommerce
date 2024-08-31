@@ -15,6 +15,7 @@ export function CartContextProvider({ children }: any) {
           headers: { token: localStorage.getItem("userToken") },
         }
       );
+      console.log(response);
       setCartItemsCount(response.data.numOfCartItems);
       return response;
     } catch (error) {
@@ -77,6 +78,35 @@ export function CartContextProvider({ children }: any) {
       toast.error("❌ error ", {});
     }
   }
+
+  async function checkoutHandler(cartId: any, url: any, formValues: any) {
+    toast("working on your order", {
+      duration: 2000,
+    });
+    try {
+      let response = await axios
+        .post(
+          `https://ecommerce.routemisr.com/api/v1/orders/checkout-session/${cartId}?url=${url}`,
+          { shippingAddress: formValues },
+          {
+            headers: { token: localStorage.getItem("userToken") },
+          }
+        )
+        .then((re) => {
+          if (re.data.status == "success") {
+            console.log(re.data.session.url);
+            window.location.href = re.data.session.url;
+          }
+          toast.success("Product added to cart");
+        });
+
+      return response;
+    } catch (error) {
+      console.log(error);
+      toast.success("error add product to cart");
+    }
+  }
+
   useEffect(() => {
     getLoggedUserCart();
   }, []);
@@ -89,6 +119,7 @@ export function CartContextProvider({ children }: any) {
         updateCartItem,
         removeCartItem,
         CartItemsCount,
+        checkoutHandler,
       }}
     >
       {children}
