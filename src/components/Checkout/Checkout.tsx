@@ -1,4 +1,4 @@
-import { FC, useContext, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 
 import { useFormik } from "formik";
 
@@ -6,17 +6,20 @@ import { useNavigate } from "react-router-dom";
 import { cartContext } from "../../Context/CartContext";
 
 interface LoginProps {}
-interface formValuesinterface {
-  details: string;
-  phone: string;
-  city: string;
-}
 
 const Checkout: FC<LoginProps> = () => {
   let [apiErrors, setApiErrors] = useState("");
   let [loading, setLoading] = useState(false);
+  let [cartId, setCartId] = useState("");
   let navigate = useNavigate();
-  let { checkoutHandler } = useContext(cartContext);
+  let { checkoutHandler, getLoggedUserCart } = useContext(cartContext);
+  async function getCartItems() {
+    let response = await getLoggedUserCart();
+    setCartId(response?.data?.cartId);
+  }
+  useEffect(() => {
+    getCartItems();
+  }, []);
   async function handleSubmit(cartid: any, url: any) {
     checkoutHandler(cartid, url, formik.values);
     console.log(cartid, url, formik.values);
@@ -29,7 +32,7 @@ const Checkout: FC<LoginProps> = () => {
     },
 
     onSubmit: () => {
-      handleSubmit("66ccbb7baed51dbc628113d3", `http://localhost:5173`);
+      handleSubmit(cartId, `http://localhost:5173`);
     },
   });
   return (
@@ -93,14 +96,15 @@ const Checkout: FC<LoginProps> = () => {
                 onSubmit={formik.handleSubmit}
               >
                 <div className="col-span-6 relative z-0 w-full mb-5 group">
-                  <input
-                    type="text"
+                  <textarea
                     name="details"
+                    rows={4}
+                    cols={10}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.details}
                     id="details"
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none            focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                    className="resize-none block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none            focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                     placeholder=" "
                     required
                   />
@@ -108,7 +112,7 @@ const Checkout: FC<LoginProps> = () => {
                     htmlFor="details"
                     className="peer-focus:font-medium absolute text-sm text-gray-500     duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-600     peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
-                    details
+                    your Street name and nearest landmark ?
                   </label>
                 </div>
                 <div className="col-span-6  relative z-0 w-full mb-5 group">
@@ -127,7 +131,7 @@ const Checkout: FC<LoginProps> = () => {
                     htmlFor="city"
                     className="peer-focus:font-medium absolute text-sm text-gray-500     duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-gray-600     peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                   >
-                    city
+                    city name
                   </label>
                 </div>
                 {formik.errors.city && formik.touched.city ? (

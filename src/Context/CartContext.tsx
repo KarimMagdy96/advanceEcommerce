@@ -15,7 +15,7 @@ export function CartContextProvider({ children }: any) {
           headers: { token: localStorage.getItem("userToken") },
         }
       );
-      console.log(response);
+
       setCartItemsCount(response.data.numOfCartItems);
       return response;
     } catch (error) {
@@ -38,7 +38,9 @@ export function CartContextProvider({ children }: any) {
         )
         .then(() => {
           toast.success("Product added to cart");
-          getLoggedUserCart();
+          getLoggedUserCart().then((response: any) => {
+            localStorage.setItem("cartId", response?.data?.data?.cartOwner);
+          });
         });
       return response;
     } catch (error) {

@@ -111,6 +111,15 @@ const Navbar: FC<NavbarProps> = () => {
                     Products
                   </NavLink>
                 </li>
+                <li>
+                  <NavLink
+                    onClick={() => setIsOpen(false)}
+                    className={`mx-2 inline-block py-2 capitalize text-lg text-slate-900 font-light`}
+                    to={"/allorders"}
+                  >
+                    orders History
+                  </NavLink>
+                </li>
               </ul>
             </div>
           )}
