@@ -1,6 +1,7 @@
 import { FC, useContext, useEffect, useState } from "react";
 
 import { cartContext } from "../../Context/CartContext";
+import { Link } from "react-router-dom";
 
 interface CartProps {}
 
@@ -159,6 +160,11 @@ const Cart: FC<CartProps> = () => {
             })}
           </tbody>
         </table>
+        <Link to="/Checkout">
+          <button className="block w-full rounded bg-gray-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-gray-700 focus:outline-none focus:ring active:bg-gray-500 sm:w-auto">
+            Check out Now
+          </button>
+        </Link>
       </div>
     </>
   );

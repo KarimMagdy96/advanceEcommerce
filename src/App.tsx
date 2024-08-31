@@ -12,9 +12,9 @@ import Notfound from "./components/Notfound/Notfound";
 import UserContextProvider from "./Context/UserContext";
 import ProtectedRouts from "./components/ProtectedRouts/ProtectedRouts";
 import Layout from "./components/Layout/Layout";
+import Checkout from "./components/Checkout/Checkout";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
 import { CartContextProvider } from "./Context/CartContext";
 import { Toaster } from "react-hot-toast";
 
@@ -37,6 +37,14 @@ let router = createBrowserRouter([
         element: (
           <ProtectedRouts>
             <About />
+          </ProtectedRouts>
+        ),
+      },
+      {
+        path: "/Checkout",
+        element: (
+          <ProtectedRouts>
+            <Checkout />
           </ProtectedRouts>
         ),
       },
