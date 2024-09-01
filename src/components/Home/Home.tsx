@@ -12,9 +12,7 @@ const Home: FC<HomeProps> = () => {
   let { getLoggedUserCart } = useContext(cartContext);
   useEffect(() => {
     if (localStorage.getItem("userToken") !== null) {
-      getLoggedUserCart().then((response: any) => {
-        localStorage.setItem("cartId", response?.data?.data?.cartOwner);
-      });
+      getLoggedUserCart();
     }
   }, []);
   if (isLoading) {

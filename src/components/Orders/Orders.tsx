@@ -2,12 +2,17 @@ import { FC, useEffect, useState } from "react";
 import axios from "axios";
 import { MoonLoader } from "react-spinners";
 import { Helmet } from "react-helmet";
+import { jwtDecode } from "jwt-decode";
 
 interface OrdersProps {}
 
 const Orders: FC<OrdersProps> = () => {
   const [userOrders, setUserOrders] = useState([]);
+  let id: any = jwtDecode(localStorage.getItem("userToken") as string);
 
+  useEffect(() => {
+    getUserOrders(id.id);
+  }, []);
   async function getUserOrders(id: any) {
     try {
       const response = await axios.get(
@@ -26,11 +31,7 @@ const Orders: FC<OrdersProps> = () => {
     }
   }
 
-  useEffect(() => {
-    getUserOrders(localStorage.getItem("cartId"));
-  }, []);
-
-  if (userOrders.length === 0 && localStorage.getItem("cartId") !== null) {
+  if (userOrders.length === 0 && localStorage.getItem("cartId") == null) {
     return (
       <div className=" w-full h-screen flex justify-center items-center ">
         <MoonLoader className=" text-9xl" />
@@ -38,7 +39,7 @@ const Orders: FC<OrdersProps> = () => {
     );
   }
 
-  if (userOrders?.length == 0 || localStorage.getItem("cartId") == null) {
+  if (userOrders?.length == 0 || localStorage.getItem("cartId") == undefined) {
     return (
       <div className="w-full h-[100vh] flex justify-center items-center">
         <div className="flex flex-col items-center">

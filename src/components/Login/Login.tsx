@@ -35,6 +35,7 @@ const Login: FC<LoginProps> = () => {
         console.log(apiResponse?.data?.message);
         apiResponse && setLoading(false);
         if (apiResponse.data.message == "success") {
+          console.log(apiResponse);
           localStorage.setItem("userToken", apiResponse.data.token);
           setuserLogin(apiResponse.data.token);
           navigate("/");
