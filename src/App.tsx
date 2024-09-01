@@ -1,9 +1,6 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./components/Home/Home";
-import About from "./components/About/About";
-import Categories from "./components/Categories/Categories";
-import Brands from "./components/Brands/Brands";
 import Cart from "./components/Cart/Cart";
 import Products from "./components/Products/Products";
 import Login from "./components/Login/Login";
@@ -33,14 +30,7 @@ let router = createBrowserRouter([
           </ProtectedRouts>
         ),
       },
-      {
-        path: "/about",
-        element: (
-          <ProtectedRouts>
-            <About />
-          </ProtectedRouts>
-        ),
-      },
+
       {
         path: "/allorders",
         element: (
@@ -57,14 +47,7 @@ let router = createBrowserRouter([
           </ProtectedRouts>
         ),
       },
-      {
-        path: "/categories",
-        element: (
-          <ProtectedRouts>
-            <Categories />
-          </ProtectedRouts>
-        ),
-      },
+
       {
         path: "/Productdetails/:id/:category",
         element: (
@@ -73,14 +56,7 @@ let router = createBrowserRouter([
           </ProtectedRouts>
         ),
       },
-      {
-        path: "/brands",
-        element: (
-          <ProtectedRouts>
-            <Brands />
-          </ProtectedRouts>
-        ),
-      },
+
       {
         path: "/cart",
         element: (
