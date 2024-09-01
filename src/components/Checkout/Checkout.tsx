@@ -1,6 +1,7 @@
 import { FC, useContext, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { cartContext } from "../../Context/CartContext";
+import { Helmet } from "react-helmet";
 
 interface LoginProps {}
 
@@ -32,6 +33,9 @@ const Checkout: FC<LoginProps> = () => {
   });
   return (
     <section className="bg-white">
+      <Helmet>
+        <title>E-commerceShop-Checkout</title>
+      </Helmet>
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
         <section className="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6">
           <img

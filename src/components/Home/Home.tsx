@@ -5,9 +5,8 @@ import CategorySlider from "../CategorySlider/CategorySlider";
 import MainSlider from "../MainSlider/MainSlider";
 import useRequist from "../../Hooks/useRequist";
 import { MoonLoader } from "react-spinners";
-
+import { Helmet } from "react-helmet";
 interface HomeProps {}
-
 const Home: FC<HomeProps> = () => {
   let { isLoading } = useRequist();
 
@@ -21,6 +20,9 @@ const Home: FC<HomeProps> = () => {
 
   return (
     <div className={styles.Home}>
+      <Helmet>
+        <title>E-commerceShop-Home</title>
+      </Helmet>
       <div className=" overflow-hidden">
         <MainSlider />
         <CategorySlider />

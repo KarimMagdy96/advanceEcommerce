@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { userContext } from "../../Context/UserContext";
+import { Helmet } from "react-helmet";
 interface RegisterProps {}
 interface formValuesinterface {
   name: string;
@@ -70,6 +71,9 @@ const Register: FC<RegisterProps> = () => {
   });
   return (
     <div className=" py-6 max-w-xl  mx-auto  px-5 ">
+      <Helmet>
+        <title>E-commerceShop-Register</title>
+      </Helmet>
       {apiErrors ? (
         <div
           className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50  "

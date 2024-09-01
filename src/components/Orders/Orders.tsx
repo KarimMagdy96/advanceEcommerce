@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import axios from "axios";
 import { MoonLoader } from "react-spinners";
+import { Helmet } from "react-helmet";
 
 interface OrdersProps {}
 
@@ -59,7 +60,10 @@ const Orders: FC<OrdersProps> = () => {
         {userOrders?.map((order: any) => {
           return (
             <>
-              <div key={order.id} className=" orderItem pt-8">
+              <div key={order?.id} className=" orderItem pt-8">
+                <Helmet>
+                  <title>E-commerceShop-orders History</title>
+                </Helmet>
                 <div className="history border-b w-full text-xl font-bold text-gray-700    pb-5">
                   {order.createdAt.slice(0, 7)}
                 </div>

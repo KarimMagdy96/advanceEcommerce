@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import useRequist from "../../Hooks/useRequist";
 import { cartContext } from "../../Context/CartContext";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 interface ProductsProps {}
 
@@ -68,6 +69,9 @@ const Products: FC<ProductsProps> = () => {
 
   return (
     <div className="flex px-5 min-h-[120vh]  justify-between relative">
+      <Helmet>
+        <title>E-commerceShop-Products</title>
+      </Helmet>
       <div
         className={`w-11/12 lg:w-2/5 xl:1/4    absolute lg:static ${
           filterOpen ? "left-0" : "-left-full"

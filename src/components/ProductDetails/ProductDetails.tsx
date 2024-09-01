@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { MoonLoader } from "react-spinners";
 import { cartContext } from "../../Context/CartContext";
+import { Helmet } from "react-helmet";
 
 interface ProductDetailsProps {}
 
@@ -61,6 +62,9 @@ const ProductDetails: FC<ProductDetailsProps> = () => {
   return (
     <>
       <div className="row justify-center  flex-col md:flex-row ">
+        <Helmet>
+          <title>{productDetails?.title}</title>
+        </Helmet>
         <div className="w-3/4 lg:w-1/4   rounded-lg  p-5">
           <Slider {...settings}>
             {productDetails?.images?.map((img: any) => (

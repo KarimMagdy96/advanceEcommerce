@@ -2,6 +2,7 @@ import { FC, useContext, useEffect, useState } from "react";
 
 import { cartContext } from "../../Context/CartContext";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 interface CartProps {}
 
@@ -44,6 +45,9 @@ const Cart: FC<CartProps> = () => {
   return (
     <>
       <div className="relative overflow-x-auto sm:rounded-lg mt-10 px-3 md:p-10 ">
+        <Helmet>
+          <title>E-commerceShop-Cart</title>
+        </Helmet>
         <div className="  text-center text-3xl text-slate-800 font-bold ">
           Shopping cart
         </div>

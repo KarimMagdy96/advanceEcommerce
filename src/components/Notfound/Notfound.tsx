@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Helmet } from "react-helmet";
 
 import { Link } from "react-router-dom";
 
@@ -6,6 +7,9 @@ interface NotfoundProps {}
 
 const Notfound: FC<NotfoundProps> = () => (
   <section className="bg-white ">
+    <Helmet>
+      <title>Not Found</title>
+    </Helmet>
     <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
       <div className="mx-auto max-w-screen-sm text-center">
         <h1 className="mb-4 text-7xl tracking-tight font-extrabold lg:text-9xl text-gray-600 ">
