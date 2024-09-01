@@ -74,9 +74,9 @@ const Orders: FC<OrdersProps> = () => {
                   {" "}
                   order Number : {order.id}
                 </div>
-                <div className=" flex gap-10 mt-4 mb-10">
+                <div className="  grid grid-cols-2 gap-5  md:grid-cols-4  mt-4 mb-10">
                   <div>
-                    <div className=" font-bold capitalize text-gray-800">
+                    <div className=" font-bold capitalize  text-gray-800">
                       Date Of Order
                     </div>
                     <div className=" text-gray-700 text-sm">
