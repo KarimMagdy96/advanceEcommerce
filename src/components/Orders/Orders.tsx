@@ -111,16 +111,16 @@ const Orders: FC<OrdersProps> = () => {
                       <>
                         <div
                           key={item?.product?.id}
-                          className=" bg-slate-200    p-2  flex md:block  justify-star gap-5"
+                          className="     flex md:block  justify-star gap-5"
                         >
-                          <div className="w-52 p-2  md:m-auto mb-3  ">
+                          <div className="w-52 p-2   mb-3  ">
                             <img
                               src={item?.product?.imageCover}
                               alt={item?.Product?.title}
                             />
                           </div>
-                          <div className=" ">
-                            <div className=" text-center   line-clamp-1">
+                          <div className="  w-1/2 md:w-full md:m-auto">
+                            <div className="   line-clamp-1">
                               {item?.product?.title}.
                             </div>
                             <div className=" text-gray-700 text-sm">
