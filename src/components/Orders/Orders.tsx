@@ -1,14 +1,11 @@
-import { FC, useContext, useEffect, useState } from "react";
-import styles from "./Orders.module.css";
+import { FC, useEffect, useState } from "react";
 import axios from "axios";
-import { cartContext } from "../../Context/CartContext";
 import { MoonLoader } from "react-spinners";
 
 interface OrdersProps {}
 
 const Orders: FC<OrdersProps> = () => {
   const [userOrders, setUserOrders] = useState([]);
-  let [cartId, setCartId] = useState("");
 
   async function getUserOrders(id: any) {
     try {

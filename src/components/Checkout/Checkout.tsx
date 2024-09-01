@@ -1,8 +1,5 @@
 import { FC, useContext, useEffect, useState } from "react";
-
 import { useFormik } from "formik";
-
-import { useNavigate } from "react-router-dom";
 import { cartContext } from "../../Context/CartContext";
 
 interface LoginProps {}
@@ -10,7 +7,7 @@ interface LoginProps {}
 const Checkout: FC<LoginProps> = () => {
   let [loading, setLoading] = useState(false);
   let [cartId, setCartId] = useState("");
-  let navigate = useNavigate();
+
   let { checkoutHandler, getLoggedUserCart } = useContext(cartContext);
   async function getCartItems() {
     let response = await getLoggedUserCart();
