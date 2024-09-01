@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { MoonLoader } from "react-spinners";
 import { Helmet } from "react-helmet";
@@ -8,12 +8,15 @@ interface OrdersProps {}
 
 const Orders: FC<OrdersProps> = () => {
   const [userOrders, setUserOrders] = useState([]);
+  const [loading, setloading] = useState(true);
   let id: any = jwtDecode(localStorage.getItem("userToken") as string);
 
+  console.log(id);
   useEffect(() => {
     getUserOrders(id.id);
   }, []);
   async function getUserOrders(id: any) {
+    setloading(true);
     try {
       const response = await axios.get(
         `https://ecommerce.routemisr.com/api/v1/orders/user/${id}`,
@@ -22,8 +25,8 @@ const Orders: FC<OrdersProps> = () => {
           headers: { token: localStorage.getItem("userToken") },
         }
       );
-      console.log("order suc", response.data);
 
+      setloading(false);
       setUserOrders(response.data);
     } catch (error) {
       console.error("order err", error); // Log the error
@@ -31,15 +34,7 @@ const Orders: FC<OrdersProps> = () => {
     }
   }
 
-  if (userOrders.length === 0 && localStorage.getItem("cartId") == null) {
-    return (
-      <div className=" w-full h-screen flex justify-center items-center ">
-        <MoonLoader className=" text-9xl" />
-      </div>
-    );
-  }
-
-  if (userOrders?.length == 0 || localStorage.getItem("cartId") == undefined) {
+  if (loading == false && userOrders?.length == 0) {
     return (
       <div className="w-full h-[100vh] flex justify-center items-center">
         <div className="flex flex-col items-center">
@@ -48,6 +43,13 @@ const Orders: FC<OrdersProps> = () => {
             you don't have any orders...
           </p>
         </div>
+      </div>
+    );
+  }
+  if (loading == true) {
+    return (
+      <div className=" w-full h-screen flex justify-center items-center ">
+        <MoonLoader className=" text-9xl" />
       </div>
     );
   }
