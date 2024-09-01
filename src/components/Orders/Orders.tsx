@@ -26,12 +26,10 @@ const Orders: FC<OrdersProps> = () => {
   }
 
   useEffect(() => {
-    if (localStorage.getItem("cartId")) {
-      getUserOrders(localStorage.getItem("cartId"));
-    }
-  }, [userOrders]);
+    getUserOrders(localStorage.getItem("cartId"));
+  }, []);
 
-  if (userOrders.length === 0) {
+  if (userOrders.length === 0 && localStorage.getItem("cartId") !== null) {
     return (
       <div className=" w-full h-screen flex justify-center items-center ">
         <MoonLoader className=" text-9xl" />
@@ -39,7 +37,7 @@ const Orders: FC<OrdersProps> = () => {
     );
   }
 
-  if (userOrders?.length == 0) {
+  if (userOrders?.length == 0 || localStorage.getItem("cartId") == null) {
     return (
       <div className="w-full h-[100vh] flex justify-center items-center">
         <div className="flex flex-col items-center">
@@ -103,22 +101,24 @@ const Orders: FC<OrdersProps> = () => {
                     </div>
                   </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-6 mt-5 border-b-2 pb-10 ">
+                <div className="grid gap-5  items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-5 border-b-2 pb-10 ">
                   {order.cartItems.map((item: any) => {
                     return (
                       <>
                         <div
                           key={item?.product?.id}
-                          className=" flex md:block  justify-star gap-5"
+                          className=" bg-slate-200    p-2  flex md:block  justify-star gap-5"
                         >
-                          <div className="w-52  mb-3  bg-slate-500">
+                          <div className="w-52 p-2  md:m-auto mb-3  ">
                             <img
                               src={item?.product?.imageCover}
                               alt={item?.Product?.title}
                             />
                           </div>
-                          <div>
-                            <div>{item?.product?.title}.</div>
+                          <div className=" ">
+                            <div className=" text-center   line-clamp-1">
+                              {item?.product?.title}.
+                            </div>
                             <div className=" text-gray-700 text-sm">
                               may/2024
                             </div>
