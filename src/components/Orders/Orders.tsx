@@ -38,6 +38,19 @@ const Orders: FC<OrdersProps> = () => {
       </div>
     );
   }
+
+  if (userOrders?.length == 0) {
+    return (
+      <div className="w-full h-[100vh] flex justify-center items-center">
+        <div className="flex flex-col items-center">
+          <i className="text-5xl text-slate-700 fa-solid fa-cart-shopping"></i>
+          <p className="text-center text-gray-600 uppercase pt-4">
+            you don't have any orders...
+          </p>
+        </div>
+      </div>
+    );
+  }
   return (
     <>
       <div className="container mx-auto w-[90%]">
@@ -90,13 +103,13 @@ const Orders: FC<OrdersProps> = () => {
                     </div>
                   </div>
                 </div>
-                <div className="grid grid-cols-1  md:grid-cols-6 mt-5 border-b-2 pb-10 ">
+                <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-6 mt-5 border-b-2 pb-10 ">
                   {order.cartItems.map((item: any) => {
                     return (
                       <>
                         <div
                           key={item?.product?.id}
-                          className=" flex md:block justify-star gap-5"
+                          className=" flex md:block  justify-star gap-5"
                         >
                           <div className="w-52  mb-3  bg-slate-500">
                             <img
