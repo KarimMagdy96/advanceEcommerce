@@ -1,5 +1,4 @@
 import { FC } from "react";
-import styles from "./Home.module.css";
 import RecentProducts from "../RecentProducts/RecentProducts";
 import CategorySlider from "../CategorySlider/CategorySlider";
 import MainSlider from "../MainSlider/MainSlider";
@@ -19,7 +18,7 @@ const Home: FC<HomeProps> = () => {
   }
 
   return (
-    <div className={styles.Home}>
+    <div>
       <Helmet>
         <title>E-commerceShop-Home</title>
       </Helmet>
