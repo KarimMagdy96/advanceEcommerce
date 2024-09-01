@@ -5,7 +5,6 @@ import { cartContext } from "../../Context/CartContext";
 interface LoginProps {}
 
 const Checkout: FC<LoginProps> = () => {
-  let [loading, setLoading] = useState(false);
   let [cartId, setCartId] = useState("");
 
   let { checkoutHandler, getLoggedUserCart } = useContext(cartContext);
@@ -136,11 +135,7 @@ const Checkout: FC<LoginProps> = () => {
                 type="submit"
                 className=" col-span-6  text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center     "
               >
-                {loading ? (
-                  <i className="fa-solid fa-spinner fa-spin-pulse"></i>
-                ) : (
-                  "Pay Now"
-                )}
+                Pay Now
               </button>
             </form>
           </div>
